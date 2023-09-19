@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="MaterialAvailability" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="SalesOrder" EntityType="MaterialAvailability.SalesOrder"/>
+                <EntitySet Name="Material" EntityType="MaterialAvailability.Material">
+                    <NavigationPropertyBinding Path="to_Description" Target="MaterialDescription"/>
+                    <NavigationPropertyBinding Path="to_Plant" Target="MaterialPlant"/>
+                </EntitySet>
+                <EntitySet Name="MaterialDescription" EntityType="MaterialAvailability.MaterialDescription"/>
+                <EntitySet Name="MaterialPlant" EntityType="MaterialAvailability.MaterialPlant">
+                    <NavigationPropertyBinding Path="to_PlantMRPArea" Target="MaterialPlantMRPArea"/>
+                </EntitySet>
+                <EntitySet Name="MaterialPlantMRPArea" EntityType="MaterialAvailability.MaterialPlantMRPArea"/>
+                <FunctionImport Name="calcMaterialAvailability" Function="MaterialAvailability.calcMaterialAvailability"/>
+                <FunctionImport Name="calcMaterialAvailabilityAt" Function="MaterialAvailability.calcMaterialAvailabilityAt"/>
+            </EntityContainer>
+            <EntityType Name="SalesOrder">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="SalesOrderItem"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" MaxLength="6" Nullable="false"/>
+                <Property Name="SalesOrderItemText" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40"/>
+                <Property Name="RequestedQuantity" Type="Edm.Decimal" Scale="3" Precision="15"/>
+                <Property Name="RequestedQuantityUnit" Type="Edm.String" MaxLength="3"/>
+                <Property Name="SDDocReferenceStatus" Type="Edm.String" MaxLength="1"/>
+                <Property Name="ProductionPlant" Type="Edm.String" MaxLength="4"/>
+                <Property Name="OriginalPlant" Type="Edm.String" MaxLength="4"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4"/>
+                <Property Name="DeliveryPriority" Type="Edm.String" MaxLength="2"/>
+                <Property Name="DeliveryStatus" Type="Edm.String" MaxLength="1"/>
+                <Property Name="SDProcessStatus" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="Material">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="ProductType" Type="Edm.String" MaxLength="4"/>
+                <Property Name="LastChangeDate" Type="Edm.Date"/>
+                <Property Name="CountryOfOrigin" Type="Edm.String" MaxLength="3"/>
+                <Property Name="ProductGroup" Type="Edm.String" MaxLength="9"/>
+                <Property Name="ItemCategoryGroup" Type="Edm.String" MaxLength="4"/>
+                <Property Name="ProductHierarchy" Type="Edm.String" MaxLength="18"/>
+                <NavigationProperty Name="to_Description" Type="Collection(MaterialAvailability.MaterialDescription)"/>
+                <NavigationProperty Name="to_Plant" Type="Collection(MaterialAvailability.MaterialPlant)"/>
+            </EntityType>
+            <EntityType Name="MaterialDescription">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                    <PropertyRef Name="Language"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Language" Type="Edm.String" MaxLength="2" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="40"/>
+            </EntityType>
+            <EntityType Name="MaterialPlant">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                    <PropertyRef Name="Plant"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="MRPType" Type="Edm.String" MaxLength="2"/>
+                <Property Name="AvailabilityCheckType" Type="Edm.String" MaxLength="2"/>
+                <NavigationProperty Name="to_PlantMRPArea" Type="Collection(MaterialAvailability.MaterialPlantMRPArea)"/>
+                <Property Name="AvailableQuantity" Type="Edm.Decimal" Scale="3" Precision="16" Nullable="false"/>
+                <Property Name="AvailableQuantityBaseUnit" Type="Edm.String" MaxLength="3" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="MaterialPlantMRPArea">
+                <Key>
+                    <PropertyRef Name="Product"/>
+                    <PropertyRef Name="Plant"/>
+                    <PropertyRef Name="MRPArea"/>
+                </Key>
+                <Property Name="Product" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="MRPArea" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="MRPType" Type="Edm.String" MaxLength="2"/>
+                <Property Name="MRPResponsible" Type="Edm.String" MaxLength="3"/>
+                <Property Name="MRPGroup" Type="Edm.String" MaxLength="4"/>
+                <Property Name="ReorderThresholdQuantity" Type="Edm.Decimal" Scale="3" Precision="13"/>
+                <Property Name="PlanningTimeFence" Type="Edm.String" MaxLength="3"/>
+                <Property Name="LotSizingProcedure" Type="Edm.String" MaxLength="2"/>
+                <Property Name="LotSizeRoundingQuantity" Type="Edm.Decimal" Scale="3" Precision="13"/>
+                <Property Name="MinimumLotSizeQuantity" Type="Edm.Decimal" Scale="3" Precision="13"/>
+                <Property Name="MaximumLotSizeQuantity" Type="Edm.Decimal" Scale="3" Precision="13"/>
+                <Property Name="MaximumStockQuantity" Type="Edm.Decimal" Scale="3" Precision="13"/>
+                <Property Name="AssemblyScrapPercent" Type="Edm.Decimal" Scale="2" Precision="5"/>
+                <Property Name="ProcurementSubType" Type="Edm.String" MaxLength="2"/>
+                <Property Name="DfltStorageLocationExtProcmt" Type="Edm.String" MaxLength="4"/>
+                <Property Name="MRPPlanningCalendar" Type="Edm.String" MaxLength="3"/>
+                <Property Name="SafetyStockQuantity" Type="Edm.Decimal" Scale="3" Precision="13"/>
+                <Property Name="RangeOfCvrgPrflCode" Type="Edm.String" MaxLength="3"/>
+                <Property Name="SafetyDuration" Type="Edm.String" MaxLength="2"/>
+                <Property Name="FixedLotSizeQuantity" Type="Edm.Decimal" Scale="3" Precision="13"/>
+                <Property Name="LotSizeIndependentCosts" Type="Edm.Decimal" Scale="3" Precision="12"/>
+                <Property Name="IsStorageCosts" Type="Edm.String" MaxLength="1"/>
+                <Property Name="RqmtQtyRcptTaktTmeInWrkgDays" Type="Edm.Decimal" Scale="0" Precision="3"/>
+                <Property Name="SrvcLvl" Type="Edm.Decimal" Scale="1" Precision="3"/>
+                <Property Name="IsMarkedForDeletion" Type="Edm.Boolean"/>
+                <Property Name="PerdPrflForSftyTme" Type="Edm.String" MaxLength="3"/>
+                <Property Name="IsMRPDependentRqmt" Type="Edm.String" MaxLength="1"/>
+                <Property Name="IsSafetyTime" Type="Edm.String" MaxLength="1"/>
+                <Property Name="PlannedDeliveryDurationInDays" Type="Edm.Decimal" Scale="0" Precision="3"/>
+                <Property Name="IsPlannedDeliveryTime" Type="Edm.Boolean"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5"/>
+                <Property Name="BaseUnit" Type="Edm.String" MaxLength="3"/>
+                <Property Name="PlanAndOrderDayDetermination" Type="Edm.String" MaxLength="3"/>
+                <Property Name="RoundingProfile" Type="Edm.String" MaxLength="4"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4"/>
+            </EntityType>
+            <ComplexType Name="BasicProductAvailabilityInfo_AvailabilityRecord">
+                <Property Name="PeriodStartUTCDateTime" Type="Edm.DateTimeOffset" Nullable="false"/>
+                <Property Name="PeriodStartTimeZone" Type="Edm.String" MaxLength="6" Nullable="false"/>
+                <Property Name="PeriodEndUTCDateTime" Type="Edm.DateTimeOffset" Nullable="false"/>
+                <Property Name="PeriodEndTimeZone" Type="Edm.String" MaxLength="6" Nullable="false"/>
+                <Property Name="AvailableQuantityInBaseUnit" Type="Edm.Decimal" Scale="3" Precision="16" Nullable="false"/>
+                <Property Name="BaseUnit" Type="Edm.String" MaxLength="3" Nullable="false"/>
+            </ComplexType>
+            <Function Name="calcMaterialAvailability" IsBound="false" IsComposable="false">
+                <Parameter Name="material" Type="Edm.String"/>
+                <Parameter Name="plant" Type="Edm.String"/>
+                <ReturnType Type="Collection(MaterialAvailability.BasicProductAvailabilityInfo_AvailabilityRecord)" Nullable="false"/>
+            </Function>
+            <Function Name="calcMaterialAvailabilityAt" IsBound="false" IsComposable="false">
+                <Parameter Name="material" Type="Edm.String"/>
+                <Parameter Name="plant" Type="Edm.String"/>
+                <Parameter Name="timestamp" Type="Edm.DateTimeOffset" Precision="7"/>
+                <ReturnType Type="MaterialAvailability.BasicProductAvailabilityInfo_AvailabilityRecord"/>
+            </Function>
+            <Annotations Target="MaterialAvailability.EntityContainer/SalesOrder">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MaterialAvailability.EntityContainer/Material">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MaterialAvailability.EntityContainer/MaterialDescription">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MaterialAvailability.EntityContainer/MaterialPlant">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MaterialAvailability.MaterialPlant/AvailableQuantity">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="MaterialAvailability.MaterialPlant/AvailableQuantityBaseUnit">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="MaterialAvailability.EntityContainer/MaterialPlantMRPArea">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

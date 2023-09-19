@@ -1,0 +1,167 @@
+<mvc:View
+    controllerName="material.dashboard.controller.Object"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic">
+
+    <ObjectPageLayout id="page"
+		enableLazyLoading="true"
+		useIconTabBar="true"
+		showTitleInHeaderContent="true"
+		upperCaseAnchorBar="false">
+
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+			        <m:Title
+                        text="{i18n>objectTitle} {Material}"
+                        level="H2"/>
+                </expandedHeading>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+        
+        <headerContent>
+            <layout:VerticalLayout>
+                <m:Title id="MaterialDescriptionTitle" text="" level="H3" />       
+                <m:ObjectStatus  
+                    title="{i18n>ProductTypeLabel}" 
+                    text="{ProductType}" />
+                <m:ObjectStatus  
+                    title="{i18n>ProductGroupLabel}" 
+                    text="{ProductGroup}" />
+                <m:ObjectStatus  
+                title="{i18n>ItemCategoryGroupLabel}" 
+                text="{ItemCategoryGroup}" />
+            </layout:VerticalLayout>
+        </headerContent>
+
+        <sections>
+			<ObjectPageSection id="salesOrdersSection" titleUppercase="false" title="{i18n>objectPageSalesOrdersSection}">
+				<subSections>
+					<ObjectPageSubSection id="salesOrdersSubSection" titleUppercase="false">
+						<blocks>
+                            <m:Table
+                                id="salesOrdersTable"
+                                width="auto"
+                                items="{
+                                    path: '/SalesOrder',
+                                    sorter: {
+                                        path: 'DeliveryPriority',
+                                        descending: false
+                                    }
+                                }"
+                                noDataText="{i18n>objectTableNoDataText}"
+                                growing="false"
+                                growingScrollToLoad="false">
+
+                                <m:headerToolbar>
+                                    <m:OverflowToolbar>
+                                        <m:Title
+                                            id="tableHeader"
+                                            text="Sales Orders"
+                                            level="H3"/>
+                                        <m:ToolbarSpacer />
+                                    </m:OverflowToolbar>
+                                </m:headerToolbar>
+
+                                <m:columns>
+                                    <m:Column id="salesOrderColumn">
+                                        <m:Text text="{i18n>tableSalesOrderColumnTitle}" id="salesOrderColumnTitle"/>
+                                    </m:Column>
+                                    <m:Column id="itemTextColumn">
+                                        <m:Text text="{i18n>tableItemTextColumnTitle}" id="itemTextColumnTitle"/>
+                                    </m:Column>
+                                    <m:Column id="plantColumn">
+                                        <m:Text text="{i18n>tablePlantColumnTitle}" id="plantColumnTitle"/>
+                                    </m:Column>
+                                    <m:Column id="deliveryPriorityColumn">
+                                        <m:Text text="{i18n>tableDeliveryPriorityColumnTitle}" id="deliveryPriorityColumnTitle"/>
+                                    </m:Column>
+                                    <m:Column id="deliveryStatusColumn">
+                                        <m:Text text="{i18n>tableDeliveryStatusColumnTitle}" id="deliveryStatusColumnTitle"/>
+                                    </m:Column>
+                                    <m:Column id="unitNumberColumn" hAlign="End">
+                                        <m:Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
+                                    </m:Column>
+                                </m:columns>
+
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:ObjectIdentifier
+                                                title="{SalesOrder}"/>
+                                            <m:Text text = "{SalesOrderItemText}"/>  
+                                            <m:Text text = "{ProductionPlant}"/> 
+                                            <m:Text text = "{DeliveryPriority}"/>
+                                            <m:Text text = "{DeliveryStatus}"/>
+                                            <m:ObjectNumber
+                                                number="{
+                                                    path: 'RequestedQuantity',
+                                                    formatter: '.formatter.numberUnit'
+                                                }"
+                                                unit="{RequestedQuantityUnit}" />
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+            <ObjectPageSection id="PlantsAvailabilitySection" titleUppercase="false" title="{i18n>objectPagePlantsAvailabilitySection}">
+				<subSections>
+					<ObjectPageSubSection id="PlantsAvailabilitySubSection" titleUppercase="false">
+						<blocks>
+                            <m:Table
+                                id="PlantsAvailabilityTable"
+                                width="auto"
+                                items="{
+                                    path: 'to_Plant'
+                                }"
+                                noDataText="{i18n>objectTableNoDataText}"
+                                growing="false"
+                                growingScrollToLoad="false">
+
+                                <m:columns>
+                                    <m:Column id="plantColumnATPTable">
+                                        <m:Text text="{i18n>tablePlantColumnTitle}" id="plantColumnTitleATPTable"/>
+                                    </m:Column>
+                                    <m:Column id="MRPType">
+                                        <m:Text text="{i18n>tableMRPTypeColumnTitle}" id="MRPTypeColumnTitle"/>
+                                    </m:Column>
+                                    <m:Column id="MRPAreaColumn">
+                                        <m:Text text="{i18n>tableMRPAreaColumnTitle}" id="MRPAreaColumnTitle"/>
+                                    </m:Column>
+                                    <m:Column id="AvailabilityColumn">
+                                        <m:Text text="{i18n>tableAvailableQuantityColumnTitle}" id="AvailabilityColumnTitle"/>
+                                    </m:Column>
+                                </m:columns>
+
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:ObjectIdentifier
+                                                title="{Plant}"/>
+                                            <m:Text text = "{MRPType}"/>  
+                                            <m:Text text = "{to_PlantMRPArea/0/MRPArea}"/>
+                                            <m:ObjectNumber
+                                                number="{
+                                                    path: 'AvailableQuantity',
+                                                    formatter: '.formatter.numberUnit'
+                                                }"
+                                                unit="{AvailableQuantityBaseUnit}" /> 
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>                    
+        </sections>
+    </ObjectPageLayout>
+
+</mvc:View>
