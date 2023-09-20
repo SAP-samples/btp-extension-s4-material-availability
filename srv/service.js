@@ -49,7 +49,7 @@ module.exports = async (srv) =>
         return false;
     }
 
-    async function addAvaiabilityData(plantItem, timestamp, selectAvailabilityColumns) {
+    async function addAvailabilityData(plantItem, timestamp, selectAvailabilityColumns) {
         try {
             const availabilityRecord = await calcMaterialAvailabilityAt(plantItem.Material, plantItem.Plant, timestamp);
             if (selectAvailabilityColumns.AvailableQuantity) {
@@ -114,14 +114,14 @@ module.exports = async (srv) =>
                 const addAvailabilityPromises = [];
                 plantData.forEach(item => {
                     addAvailabilityPromises.push(
-                        addAvaiabilityData(item, timestamp, selectAvailabilityColumns) 
+                        addAvailabilityData(item, timestamp, selectAvailabilityColumns) 
                     );
                 });
                 await Promise.all(addAvailabilityPromises);
             }
             else {
                 // read single entry result
-                await addAvaiabilityData(plantData, timestamp, selectAvailabilityColumns);
+                await addAvailabilityData(plantData, timestamp, selectAvailabilityColumns);
             }
         }
         return plantData;
@@ -150,7 +150,7 @@ module.exports = async (srv) =>
                         materialData.forEach(materialItem => {
                             materialItem.to_Plant.forEach(plantItem => {
                                 addAvailabilityPromises.push(
-                                    addAvaiabilityData(plantItem, timestamp, selectAvailabilityColumns) 
+                                    addAvailabilityData(plantItem, timestamp, selectAvailabilityColumns) 
                                 );
                             });
                         });                        
@@ -159,7 +159,7 @@ module.exports = async (srv) =>
                         // read single material entry result
                         materialData.to_Plant.forEach(plantItem => {
                             addAvailabilityPromises.push(
-                                addAvaiabilityData(plantItem, timestamp, selectAvailabilityColumns) 
+                                addAvailabilityData(plantItem, timestamp, selectAvailabilityColumns) 
                             );
                         });
                     }
