@@ -117,7 +117,7 @@ To deploy also the Material Dashboard Fiori application and setup its access to 
 4. Wait for the `Process finished.` output from the Terminal opened to perform the deployment operation.
 5. Go to SAP BTP cockpit and access the Cloud Foundry space to which you deployed the application modules. From the **Applications** tab click on the App Router application name, for example: material-availability, and click on the link under the **Application Routes**.
 6. Login with the same user you logged-in to the SAP BTP Cockpit.
-7. Test the deployed service by adding the paths as you did in the previous section, when testing with the "live" profile from SAP Business Application Studio.
+7. Test the deployed service by adding the paths as you did in the previous section, in step 8 of [testing with the "live" profile](../../3-basic/1-create-service#test-the-service-from-sap-business-application-studio) from SAP Business Application Studio.
    Note: the access through the App router application module is required only when accessing through browser, to allow UI-based login. When accessing the service from any other application or service, the entrypoint of the deployed service application (for example, material-availability-srv) should be used directly, with JWT token credentials, initiated by SAP BTP XSUAA service.
 
 Congratulations! You have completed the **Advanced** scope and have your Material Availability Dashboard application ready, including UI, service logic and access to live SAP S/4HANA system. You also have the service available from Cloud Foundry as a downstream Vendor API. 
