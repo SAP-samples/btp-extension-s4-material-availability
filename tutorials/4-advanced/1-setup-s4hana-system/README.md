@@ -22,11 +22,11 @@ You can activate the needed services in your SAP S/4HANA system by performing th
 
 ![Add Service](images/add-service.png)
 
-4. Select the active SAP System Alias, which is called **LOCAL_TGW** in the fully activated appliance.
+4. If you don't know the system alias, you can use the search button. Select or input the active SAP System Alias, which is called **LOCAL_TGW** in the fully activated appliance.
 
 ![System Alias](images/system-alias.png)
 
-5. Locate the services based on a wildcard search in the **External Service Name** field, select the row, and click **Add Selected Services**.
+5. Locate the services based on a wildcard search in the **External Service Name** field, select the row, and click **Add Selected Services**. Remember to add all 4 external services, as listed in the [Activate Required Services](./README.md#activate-required-services) summary.
 
 ![Add Selected Services](images/add-selected-services.png)
 
