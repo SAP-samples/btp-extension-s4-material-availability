@@ -27,7 +27,7 @@ The application is composed of two pages: a worklist page with material sales or
 2. Once the application is running, press on the **Open in a New Tab** button from the notification. This will open a new browser tab for accessing the application process from the dev space localhost. You can also open this browser tab while the application is running from the Command Palette using the **Ports: Preview** command and selecting the 4004 port.
 3. From the running application browser tab, click on the **/material.dashboard/webapp/index.html** link under the Web Applications section.
 4. Test the functionality of the UI application you just created (with the data served from the Material Availability service, which is consuming data from the external SAP S/4HANA services according to the credentials provided with the relevant sandbox profile):
-    - View the Material Sales Orders table (filtering out completed orders, and ordered by priority).
+    - View the Material Sales Orders table ( which is already filtering out completed orders, and is ordered by priority).
     - Search a Sales order number, Material identified, or description (or part of them) to filter the relevant sales orders. For example, search for: "Bike" or "TG11".
     - Navigate to Material object page by clicking on a row from the table (for example, navigate to material "TG11").
     - View the material details, including its description, product type, product group and item category group, provided from the Material OData collection and its related navigation properties.
