@@ -21,7 +21,7 @@ After running this use case, you will understand the best practices for realizin
 ## Requirements
 The required systems and components are:
 
-- SAP S/4HANA Public Cloud or On-Premise (CAL).
+- SAP S/4HANA Public Cloud or On-Premise (2020 FPS02 or higher, as available through CAL).
 - SAP BTP account
 
 Entitlements/Quota required in your SAP Business Technology Platform Account:
