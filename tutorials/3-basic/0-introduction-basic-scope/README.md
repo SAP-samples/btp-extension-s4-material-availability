@@ -10,6 +10,6 @@ In the Basic Scope of the mission, you will use **SAP Business Application Studi
 ## Step-by-Step
 To complete the **Basic Scope**, please follow the respective cards or check out the linked README documents. 
 
-1. First, make sure you have completed all the **setup** steps. ➜ ([click here](../../2-setup/REAMDE.md))
+1. First, make sure you have completed all the **setup** steps. ➜ ([click here](../../2-setup/README.md))
 2. Start the implementation with **creating the CAP service**. ➜ ([click here](../1-create-service/README.md))
 3. Next, **create the UI application**. ➜ ([click here](../2-create-ui-application/README.md))
