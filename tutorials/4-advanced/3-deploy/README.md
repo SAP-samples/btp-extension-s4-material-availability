@@ -11,7 +11,7 @@ This will expose your service, to provide an additional "Vendor Available to Pro
 ## Prepare your project for production:
 1. Open Terminal in your project root context and execute `cds add xsuaa --for production`. This will configure your service for [XSUAA-based authentication](https://discovery-center.cloud.sap/serviceCatalog/authorization-and-trust-management-service?region=all).
 
-2. From the Explorer view, open the **pacakge.json** file. For each required OData service, clone the `"[live]"` profile including the service credentials, into a new `"[production]"` profile.
+2. From the Explorer view, open the **package.json** file. For each required OData service, clone the `"[live]"` profile including the service credentials, into a new `"[production]"` profile.
    Final result should include:
    ```
     "cds": {
@@ -75,7 +75,7 @@ This will expose your service, to provide an additional "Vendor Available to Pro
 
 5. Execute `cds add mta` to generate an mta.yaml descriptor file, configuring all the modules and services required for [MTA-based deployment](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/d04fc0e2ad894545aebfd7126384307c.html) of your CAP project.
 
-6. Right click the generated **mta.yaml** file, select **Open With...** and then select the **Text Editor** option. Add under `resources` section in the file, the following resources in order to add destination and connectivity BTP service instances to access the required BTP destiantions from the deployed application: 
+6. Right click the generated **mta.yaml** file, select **Open With...** and then select the **Text Editor** option. Add under `resources` section in the file, the following resources in order to add destination and connectivity BTP service instances to access the required BTP destinations from the deployed application: 
    ```
    resources:
      - name: material-availability-destination
