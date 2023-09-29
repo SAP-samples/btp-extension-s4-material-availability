@@ -26,11 +26,11 @@ You can activate the needed services in your SAP S/4HANA system by performing th
 
 ![System Alias](images/system-alias.png)
 
-5. Locate the services based on a wildcard search in the **External Service Name** field, select the row, and click **Add Selected Services**. Remember to add all 4 external services, as listed in the [Activate Required Services](./README.md#activate-required-services) summary.
+5. Locate the services based on a wildcard search in the **External Service Name** field, select it, and click **Add Selected Services**. Remember to add all 4 external services, as listed in the [Activate Required Services](./README.md#activate-required-services) summary.
 
 ![Add Selected Services](images/add-selected-services.png)
 
-6. Set the package assignment to **Local Object** and click the green checkmark.
+6. Set the package assignment to **Local Object** and click the checkmark.
 
 ![Package Assignment](images/local-object.png)
 
@@ -68,12 +68,12 @@ If you need to create additional stock or sales orders you can follow the **Test
 
 ## Configure SAP Cloud for Customer and SAP Integration Suite, Cloud Integration
 
-As there is no trial option for SAP Cloud for Customer, this use case mission will explain the integration points between SAP business applications, and show you how to interact with the relevant API that enable the underlying functionality. In this section, we will also refer you to the specific integration packages that enable this scenario in your productive landscape.
+As there is no trial option for SAP Cloud for Customer, this use case mission will explain the integration points between SAP business applications and show you how to interact with the relevant API that enable the underlying functionality. In this section, we will also refer you to the specific integration packages that enable this scenario in your productive landscape.
 
-There are 2 primary integration packages for SAP Cloud for Customer and SAP S/4HANA:
+There are 2 primary integration packages for SAP Cloud for Customer and SAP S/4HANA, depending on whether you utilize the public cloud or on-premise version:
 
-[SAP Cloud for Customer Integration with SAP S/4HANA](https://api.sap.com/package/SAPHybrisCloudforCustomerIntegrationwithSAPS4HANA/overview)
-[SAP Cloud for Customer Integration with SAP S/4HANA Cloud](https://api.sap.com/package/SAPHybrisCloudforCustomerIntegrationwithSAPS4HANACloud/overview)
+- [SAP Cloud for Customer Integration with SAP S/4HANA](https://api.sap.com/package/SAPHybrisCloudforCustomerIntegrationwithSAPS4HANA/overview)
+- [SAP Cloud for Customer Integration with SAP S/4HANA Cloud](https://api.sap.com/package/SAPHybrisCloudforCustomerIntegrationwithSAPS4HANACloud/overview)
 
 Each package consists of multiple scenarios, from replication of master data, transactions, and real-time insights related to material availability and pricing.
 

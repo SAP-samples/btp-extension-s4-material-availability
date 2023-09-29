@@ -75,7 +75,7 @@ This will expose your service, to provide an additional "Vendor Available to Pro
 
 5. Execute `cds add mta` to generate an mta.yaml descriptor file, configuring all the modules and services required for [MTA-based deployment](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/d04fc0e2ad894545aebfd7126384307c.html) of your CAP project.
 
-6. Right click the generated **mta.yaml** file, select **Open With...** and then select the **Text Editor** option. Add under `resources` section in the file, the following resources in order to add destination and connectivity BTP service instances to access the required BTP destinations from the deployed application: 
+6. Right-click the generated **mta.yaml** file, select **Open With...** and then select the **Text Editor** option. After the `resources` section in the file, add the following resources to add the destination and connectivity SAP BTP service instances and make them accessible from the deployed application: 
    ```
    resources:
      - name: material-availability-destination
@@ -111,9 +111,9 @@ To deploy also the Material Dashboard Fiori application and setup its access to 
 
 
 ## Deploy to Cloud Foundry:
-1. Assemble the required modules into one MTA archive file, by right clicking the **mta.yaml** file from the Explorer view, and select **Build MTA Project** option. The MTA archive files are created under the mta_archives folder in your project.
-2. Expand the **mta_archives** folder and right click the apporpriate `.mtar` file for deployment. From the context menu, select the **Deploy MTA Archive** option.
-3. Once prompted, sign-in to Cloud Foundry with your user credentials or by using SSO, and select the Cloud Foundry organization and space to which you would like to deploy your application modules.
+1. Assemble the required modules into one MTA archive file by right clicking the **mta.yaml** file from the Explorer view, and select **Build MTA Project** option. The MTA archive files are created under the mta_archives folder in your project.
+2. Expand the **mta_archives** folder and right click the appropriate `.mtar` file for deployment. From the context menu, select the **Deploy MTA Archive** option.
+3. Once prompted, sign-in to Cloud Foundry with your user credentials or by using SSO and select the Cloud Foundry organization and space to which you would like to deploy your application modules.
 4. Wait for the `Process finished.` output from the Terminal opened to perform the deployment operation.
 5. Go to SAP BTP cockpit and access the Cloud Foundry space to which you deployed the application modules. From the **Applications** tab click on the App Router application name, for example: material-availability, and click on the link under the **Application Routes**.
 6. Login with the same user you logged-in to the SAP BTP Cockpit.

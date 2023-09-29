@@ -1,7 +1,5 @@
 # Introduction to the Advanced Scope 
-In the **Advanced Scope** of the mission, you will use **SAP Cloud for Customer** and **SAP S/4HANA** to enable the material availability scenario on a live system. Then you will consume the live data from the SAP S/4HANA system into the CAP application you created in the Basic Scope of the mission.
-
-Finally, you will deploy the Material Availability OData service to **SAP BTP, Cloud Foundry** environment, to provide an additional "Vendor Available to Promise (ATP)" capability.
+In the **Advanced Scope** of the mission, you will use **SAP Cloud for Customer** and **SAP S/4HANA** to enable the material availability scenario on a live system. Then, you will consume the live data from the SAP S/4HANA system into the CAP application you created in the Basic Scope of the mission. Finally, you will deploy the Material Availability OData service to **SAP BTP, Cloud Foundry** environment, to provide an additional "Vendor Available to Promise (ATP)" capability.
 
 ## Pre-Requisites
 To complete the **Advanced Scope** you are required to have the following SAP products / licenses:
@@ -12,7 +10,7 @@ To complete the **Advanced Scope** you are required to have the following SAP pr
 - Access to an SAP Cloud for Customer system is required to configure the **Pricing in Sales Quote Follow up Scenario** in SAP Integration Suite. Without one, you can follow along to see the required integration points, configuration of pre-packaged integration flows, and a video demo of the sales side of the process.
 
 ## Step-by-Step
-To complete the **Advanced Scope**, please follow the respective cards or check out the linked README documents. 
+To complete the **Advanced Scope**, please follow the respective SAP Discovery Center cards or check out the linked README documents. 
 
 1. First, setup **SAP Cloud for Customer and SAP S/4HANA systems** with the requisite SAP Best Practices scenarios for Order to Cash. ➜ ([click here](../1-setup-s4hana-system/README.md))
 2. Next, update the CAP application to **consume live data from the SAP S/4HANA system**. ➜ ([click here](../2-consume-live-data/README.md))

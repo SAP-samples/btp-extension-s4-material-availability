@@ -47,6 +47,6 @@ In this section, you will use the SAP S/4HANA system you configured in the previ
    This configuration allows access to the SAP BTP destination, when running your application locally from SAP Business Application Studio.
 2. Open the **.vscode/launch.json** file from your project, and clone the first launch configuration.
 3. Rename the cloned configuration, for example to: "cds serve live data", and replace the "sandbox" argument with "live". See reference code [here](../../../.vscode/launch.json#L24-L40).
-4. Open the **Run and Debug** view and start debugging using the launch configuration you created from the .vscode/launch.json file.
+4. Open the **Run and Debug** perspective and start debugging using the launch configuration you created from the .vscode/launch.json file.
 5. Once the application is running, press on the **Open in a New Tab** button from the notification. This will open a new browser tab for accessing the application process from the dev space localhost. You can also open this browser tab while the service is running from the Command Palette using the **Ports: Preview** command and selecting the 4004 port.
 6. Test the service and UI application functionality, now consuming the live data. You can use similar queries and tests as you performed from the Basic scope. Only make sure to adjust the provided values to the data populated in the SAP S/4HANA system. 
