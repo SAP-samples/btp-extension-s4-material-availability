@@ -14,6 +14,6 @@ To complete the **Advanced Scope** you are required to have the following SAP pr
 ## Step-by-Step
 To complete the **Advanced Scope**, please follow the respective cards or check out the linked README documents. 
 
-1. First, setup **SAP Cloud for Customer and SAP S/4HANA systems** with the requisite SAP Best Practices scenarios for Order to Cash. ➜ ([click here](../1-setup-s4hana-system/REAMDE.md))
+1. First, setup **SAP Cloud for Customer and SAP S/4HANA systems** with the requisite SAP Best Practices scenarios for Order to Cash. ➜ ([click here](../1-setup-s4hana-system/README.md))
 2. Next, update the CAP application to **consume live data from the SAP S/4HANA system**. ➜ ([click here](../2-consume-live-data/README.md))
 3. Finally, **deploy the service to SAP BTP, Cloud Foundry environment**. ➜ ([click here](../3-deploy/README.md))
