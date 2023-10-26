@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbtp_extension_s4_material_availability=self.webpackChunkbtp_extension_s4_material_availability||[]).push([[769],{7085:a=>{a.exports=JSON.parse('{"name":"docusaurus-theme-search-algolia","id":"default"}')}}]);

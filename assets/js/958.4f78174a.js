@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbtp_extension_s4_material_availability=self.webpackChunkbtp_extension_s4_material_availability||[]).push([[958],{9958:(a,e,i)=>{i.r(e)}}]);
