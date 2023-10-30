@@ -20,7 +20,7 @@ This can be done easily from SAP Business Application Studio using the [Service 
 3. Select search on the **SAP S/4HANA Cloud** package and search for **Sales Orders (A2X)** service.
 4. Login with your SAP Business Accelerator Hub credentials, once prompted.
 5. An editor tab with the service information is opened. You can view the service properties, including the service entities and live data fetched from the SAP Business Accelerator Hub's sandbox environment.
-6. From the service tab, click on **Service Actions** and select **Add External Data Model to CAP project**. Select your CAP project from workspace and click **Add** to complete the operation.   
+6. From the service tab select **Add External Data Model to CAP project**. Select your CAP project from workspace and click **Add** to complete the operation.   
 
 ![Service Center](images/service-center.png)
 
@@ -37,12 +37,23 @@ In the **Basic Scope** of the mission, you will use a sandbox environment to con
    - [Sales Order Service Sandbox Credentials](../../../package.json#L55-L58)
    - [Product Service Sandbox Credentials](../../../package.json#L70-L73)
    - [Availability Info Service Sandbox Credentials](../../../package.json#L85-L88)
+5. Add a **\[sandbox\]** block to the auth object in **cds.requires** with kind "dummy" so the final section looks like this:
+```
+   "auth": {
+        "[production]": {
+          "kind": "xsuaa"
+        },
+        "[sandbox]": {
+          "kind": "dummy"
+        }
+      }
+```
 
 
 ## Implement the service
 1. Open Terminal and run command `npm install @sap-cloud-sdk/http-client @sap-cloud-sdk/util` from your project root, to add dependencies required for consuming data from external services.
 2. Trigger the [Command Palette](https://help.sap.com/docs/bas/sap-business-application-studio/command-palette) by pressing F1 key and select the **Open Storyboard** command. The Storyboard editor serves as an entry point for viewing and adding components to your CAP project.
-3. From Storyboard, select the "+" button under the **Services** column to add a new service resource to your CAP project.
+3. From Storyboard, ensure the MaterialAvailability service has been automatically created, or select the "+" button under the **Services** column to add a new service resource to your CAP project if needed.
 4. Open the created **srv/service.cds** file from your project, and copy the content from the service model [here](../../../srv/service.cds). This service definition imports the external service models added in the previous step. Then it defines the Material Availability service model as a mashup service from the 3 external SAP S/4HANA services. It exposes only the required entities as projections from the external service entities, including only the relevant properties. The MaterialPlant entity definition includes calculated availability fields that will be populated at runtime, in addition to the properties from the imported A_ProductPlant entity. In this way, the MaterialPlant entity will mashup data retreived at runtime from 2 different SAP S/4HANA services.
 5. Copy [service.js](../../../srv/service.js) file including the service handlers implementation logic, into the **srv** folder in your project. The implementation in this file handles READ requests for all service entities defined in the model, also to support navigation between entities and other OData features such as the "expand" capability. The handlers for the MaterialPlant entity and for the Material entity (which may expand the MaterialPlant data using a navigation property) include special handling to fetch the required properties from the Product Master SAP S/4HANA service entities, and calculating availability properties by calling a function from the Basic Product Availability Info SAP S/4HANA service.
 6. Go back to the Storyboard to view the created components in your project, and the connections between them. You can also open each service in the Graphical Modeler directly from the Storyboard to view the complete service structure, including the entity properties and the navigation relationships between the service entities.
@@ -51,17 +62,38 @@ In the **Basic Scope** of the mission, you will use a sandbox environment to con
 
 ## Test the service from SAP Business Application Studio
 1. Open Terminal and run command `npm i` from your project root to install dependencies.
-2. Open the **.vscode/launch.json** file from your project, and add to the **args** list the `"--profile", "sandbox"` arguments, to run the service using the credentials from the sandbox profile you created.
-3. Create a **.env** file in your project root and add it the following content:
+2. Open the **.vscode/launch.json** file from your project and add a new object to the end of the **configurations** array:
+
+   ```
+   {
+      "name": "cds serve sanbox",
+      "request": "launch",
+      "type": "node",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "cds",
+      "args": [
+        "serve",
+        "--with-mocks",
+        "--in-memory?",
+        "--profile",
+        "sandbox"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+   ```
+
+4. Create a **.env** file in your project root and add it the following content:
    ```
    cds.requires.SalesOrderA2X.[sandbox].credentials.headers.APIKey=<Copied API Key>
    cds.requires.ProductMasterA2X.[sandbox].credentials.headers.APIKey=<Copied API Key>
    cds.requires.BasicProductAvailabilityInfo.[sandbox].credentials.headers.APIKey=<Copied API Key>
    ```
-4. Access [SAP Business Accelerator Hub](https://api.sap.com/), login and open your user settings. Then from the API Settings press on the **Show API Key** button and then on **Copy Key and Close** option to copy your personal API key. This key serves as credentials for accessing the sanbox environment and must be provided as a header with each request sent to the sandbox services.
-5. Back in SAP Business Application Studio, use the copied API key to replace the `<Copied API Key>` placeholders in the **.env** file content.
-6. Open the **Run and Debug** view and start debugging using the launch configuration you created from the .vscode/launch.json file.
-7. Once the service is running, press on the **Open in a New Tab** button from the notification. This will open a new browser tab for accessing the service process from the dev space localhost. You can also open this browser tab while the service is running from the Command Palette using the **Ports: Preview** command and selecting the 4004 port.
+5. Access [SAP Business Accelerator Hub](https://api.sap.com/), login and open your user settings. Then from the API Settings press on the **Show API Key** button and then on **Copy Key and Close** option to copy your personal API key. This key serves as credentials for accessing the sanbox environment and must be provided as a header with each request sent to the sandbox services.
+6. Back in SAP Business Application Studio, use the copied API key to replace the `<Copied API Key>` placeholders in the **.env** file content.
+7. Launch the Command Pallette by pressing F1, and open the **Run and Debug** view and start debugging using the launch configuration you created from the .vscode/launch.json file.
+8. Once the service is running, press on the **Open in a New Tab** button from the notification. This will open a new browser tab for accessing the service process from the dev space localhost. You can also open this browser tab while the service is running from the Command Palette using the **Ports: Preview** command and selecting the 4004 port.
 
 ![Run and Debug](images/run.png)
 
