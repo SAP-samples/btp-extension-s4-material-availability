@@ -1,57 +1,28 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-extension-s4-material-availability)](https://api.reuse.software/info/github.com/SAP-samples/btp-extension-s4-material-availability)
 
-# Deliver Connected Experiences with a single view of Material Availability
+# ASUG Tech Connect 2023 Hands-on Lab "ChatGPT and SAP: Leveraging SAP BTP and Microsoft Azure AI"
 
-## Description
-The [Lead to Cash process](https://api.sap.com/valueflow/LC1C1-SVFSolutionProcess) spans multiple business applications, and connects both employees and partners from initial interactions to order fulfillment. A key component of the process is material availability, that is, how much of a product is available and from where, being up to date and accessible in real-time. This is equally important across direct sales and distribution channels, where internal sales reps and external distribution partners may be competing for the same inventory.
+## Purpose
+This tutorial is the exercise desciption for the ASUG Tech Connect Hands-on Lab session "ChatGPT and SAP: Leveraging SAP BTP and Microsoft Azure AI" and intended to be used in class with instructors on-site, in case of questions. Please follow all the steps and read the instructions carefully. In case of questions or when you get stuck, try to discuss and troubleshoot with your fellow learners and raise your hand in case you want support from one of the instructors.
 
-In this use case, you will see how SAP CX and SAP S/4HANA are integrated through SAP BTP, and how the process can be extended to provide an additional "Vendor Available to Promise (ATP)" capability. You will leverage SAP Business Application Studio and SAP Cloud Application Programming (CAP) model to consume the Product Availability service on SAP S/4HANA and ensure unified visibility across upstream and downstream channels.
+## Business Scenario
+The business use case is part of the [Lead to Cash process](https://api.sap.com/valueflow/LC1C1-SVFSolutionProcess) which spans multiple business applications including order fullfillment and a key component of the process is material availability, that is, how much of a product is available and from where, being up to date and accessible in real-time. You will leverage SAP Business Application Studio (BAS) and the SAP Cloud Application Programming (CAP) model to consume the product availability service on SAP S/4HANA for a unified visibility by creating an SAP BTP extension. You will be able to access the material availability data via an oData service or show it in a UI (optional exercise) as part of the SAP BTP extension that you'll create.
 
-## Challenge
-For companies to more tightly integrate their supply chains, it is critical they rely on their existing digital core. A single source of material availability is required to serve internal and external stakeholders and deliver an optimal customer experience.
+## ChatGPT and Generative AI
+With the efforts of building the Material Availability scenario that are in detail lined out in this [SAP Discovery Center mission](https://discovery-center.cloud.sap/missiondetail/4356), you can query the system by following the oData syntax and API documentation. As Large Language Models (LLMs) are great in translating from one language into another, they're also working well in creating oData queries according to rules that they're either fed via prompt engineering or embeddings. In this exercise, we will use prompt engineering and a Microsoft Azure AI reference architecture to get the job done by a GPT model in the same way as you would ask ChatGPT (first API call). We'll take that generated oData query and run it against the SAP S/4HANA system with the created Material Availability CAP service (second API call), and finally have the JSON result interpreted and summarized by GPT (third API call).
 
-## Solution
-Pre-built integrations and extension applications tightly coupled with your SAP business applications. A "one-click" deployment experience to quickly realize the outcome in your SAP BTP global account.
+## SAP Build Apps
+For creating a simple user interface to interact with our Material Availabiltiy "ChatGPT", we're using SAP Build Apps (formerly AppGyver) through the free AppGyver Community Edition. This application prompts the user to provide a question about material availability in natural language, engineers the prompt for the Microsoft Azure GPT call, executes the resulting oData web service call, and summarizes the output leveraging the GPT CAP service.
 
 ![Material Availability extension - Solution Diagram](./solution-diagram.png)
 
-## Outcome
-After running this use case, you will understand the best practices for realizing the Intelligent Enterprise process, Lead to Cash, and how it is implemented. You will also deploy an extension application on SAP BTP for providing access to material availability to partners, and experience developer efficiency enhancements made possible by [SAP Business Application Studio](https://www.sap.com/products/technology-platform/business-application-studio.html) and [SAP Business Accelerator Hub](https://api.sap.com/)
-
-## Requirements
-The required systems and components are:
-
-- SAP S/4HANA Public Cloud or On-Premise (2020 FPS02 or higher, as available through CAL).
-- SAP BTP account
-
-Entitlements/Quota required in your SAP Business Technology Platform Account:
-
-| Service                            | Plan        | Number of instances |
-| ---------------------------------- | ----------- | ------------------- |
-| Connectivity                       | lite        | 1                   |
-| Destination                        | lite        | 1                   |
-| Cloud Foundry runtime              | free        |                     |
-
-Subscriptions required in your SAP Business Technology Platform Account:
-
-| Subscription                      | Plan             |
-| --------------------------------- | ---------------- |
-| SAP Business Application Studio   | free             |
-| SAP Integration Suite (Optional)  | free             |
-
-## Download and Installation
-Refer to the [use case tutorials](./tutorials/1-discover/README.md) to get started
-
-## Known Issues
-None.
-
-## How to obtain support
-[Create an issue](https://github.com/SAP-samples/btp-extension-s4-material-availability/issues) in this repository if you find a bug or have questions about the content.
- 
-For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html).
-
-## Contributing
-If you wish to contribute code, offer fixes or improvements, please send a pull request. Due to legal reasons, contributors will be asked to accept a DCO when they create the first pull request to this project. This happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).
+## Steps
+0. PRE-WORK (hopefuly already done): [Create SAP Business Technology Platform (SAP BTP) Trial account](https://developers.sap.com/tutorials/appstudio-onboarding.html)
+1. [Add SAP Business Application Studio (BAS) for development](https://github.com/SAP-samples/btp-extension-s4-material-availability/blob/asugTC23/tutorials/2-setup/README.md)
+2. [Create Material Availability CAP (Cloud Application Programing model) service](https://github.com/SAP-samples/btp-extension-s4-material-availability/blob/asugTC23/tutorials/3-basic/1-create-service/README.md)
+3. [Create free SAP Build Apps (AppGyver) Community Edition account](https://forums.appgyver.com/t/appgyver-community-edition-announcement/22006)
+4. Build an SAP Build Apps application for Material Availability using the prebuilt GPT CAP service
+5. OPTIONAL: [Create a Material Dashboard UI Application for a classic view on the data](https://github.com/SAP-samples/btp-extension-s4-material-availability/blob/asugTC23/tutorials/3-basic/2-create-ui-application/README.md)
 
 ## License
 Copyright (c) 2023 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
