@@ -9,12 +9,12 @@ On the sign in screen, click on **Register**, unless you already have a Communit
 ## Import provided project from file
 Once in, click on **Create New** in the uper right, expand **Import from File** or use the **New from File** functionality. Provide a name for your application, for example **ASUG Tech Connect**, and use the [prepared project](../../../Tech%20Connect%20V2.zip.gpg) that contains the base logic and screens for the UI to create the app. To do so, simply download the raw file from the prepared project link and store it locally on your laptop. Then, use **Select File** in the tool to specify the downloads location on your machine.
 
-<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/73aa9f84-6cb1-4b6b-9fe0-362428c74374">
+<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/a8927362-28d0-4ba6-a477-1fa970015488">
 
 
 On the **Home page**, mark the **Submit** button in the UI Canvas design time and then click on **Add Logic to BUTTON 1** in the bottom right to show the logic in the **LOGIC CANVAS** in the lower portion of the screen. Select **Create record** in the logic flow for the Submit button and inspect the properties and outputs in the upper right. Click on **Custom object** under Record properties for the resource **chatCompletion** to investigate how the chat with the GPT model is put together. The so-called temperature for the AI model that controls the accuracy/creativity is set to 0.5 per default and by clicking on **Custom list**, you can see both the context we provide to the system for creating the prompt and the user chat text coming from the application.
 
-<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/76303da3-cce6-4b5e-9ea5-e2ccc0aaaa12">
+<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/35725c52-3cd2-4242-9444-9bb755160130">
 
 
 Let's have a closer look at the role "system" to see what context the pre-built app is providing:
@@ -41,12 +41,12 @@ As you can see, we're exactly providing the examples that were listed in [Step 8
 ## Launch your SAP Build Apps app
 Let's see how far we can get with these examples and the power of the GPT model. Now it's on you to try it out. Close the popup, don't save any changes if you didn't intend to change anything, and click on **LAUNCH** in the top bar to test your application. Select **Open preview portal**, then **Open web preview**, and click on **OPEN** for your SAP Build Apps app. This is how easy you can put together applications with SAP Build Apps!
 
-Run some sample queries to try out the logic. Remember, whatever you put into the text field is being sent to the GPT model with the instructions above and should return an OData query. We have implemented error branches that return a message in case the prompt does not fit the intended function. You can investigate this and the entire flow in the design time later. Now, click on **Assistant's Instructions** to see what this tool can and can't do.
+Run some sample queries to try out the logic. Remember, whatever you put into the text field is being sent to the GPT model with the instructions above and should return an OData query. We have implemented error branches that return a message in case the prompt does not fit the intended function. You can investigate this and the entire flow in the design time later. Click on **Assistant's Instructions** to see what this tool can and can't do.
 
 <img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/db991d63-387c-41a1-8b23-bb9e28ee74ce">
 
 
-Now, let's give it a try with some sample prompts in natural language. Click on **Assistant's Instructions** again to hide the details again and focus on the prompt text field and the **Submit** button. When you enter a prompt, you can start calling the LLM by clicking **Submit**, hitting just enter/return does not work to start the call to GPT. We have listed some simple prompts below to get started and to understand how it works. Don't use the checkbox for adding the data to the next prompt quite yet, as that will send you to Exercise 2. Let's first understand what is happening here. Every natural language prompt you submit will be translated into an OData query if it can and fits the narrative, otherwise you'll see an error message. When clicking on the returned OData URL link as a second step, it will run the query against the backend SAP S/4HANA system and provide the JSON response from an API similar to the one we created in CAP earlier. The JSON can be empty if you've generated a query that returns no data or it doesn't contain materials, sales orders, or availability information, according to the query.
+Now, let's give it a try with some sample prompts in natural language. Click on **Assistant's Instructions** again to hide the details again and focus on the prompt text field and the **Submit** button. When you enter a prompt, you can start calling the LLM by clicking **Submit**, hitting just enter/return does not work to start the call to GPT in this first exercise. We have listed some simple prompts below to get started and to understand how it works. Don't use the checkbox for adding the data to the next prompt quite yet, as that will send you to Exercise 2. Let's first understand what is happening here. Every natural language prompt you submit will be translated into an OData query if it can and fits the narrative, otherwise you'll see an error message. When clicking on the returned OData URL link as a second step, it will run the query against the backend SAP S/4HANA system and provide the JSON response from an API similar to the one we created in CAP earlier. The JSON can be empty if you've generated a query that returns no data or it doesn't contain materials, sales orders, or availability information, according to the query.
 
 Try it out and start with simple queries like the ones below, read the created OData query to get a better understanding of what was created and click on it to show the JSON response:
 - List 50 materials from my system
@@ -56,10 +56,9 @@ Try it out and start with simple queries like the ones below, read the created O
 - How much of the materials in the TG family are available in plant 1010?
 - List all sales orders with material TG11
 
-The JSON returned shows the actual data of a connected SAP S/4HANA system. 
+Click on the URL that shows the OData query to run that API call in the connected backend system. As the result, it returns a JSON that shows the actual data from a live SAP S/4HANA backend system that we setup for this exercise. By changing the API key to your own one, you could also get the results from the sandbox we used earlier when creating the CAP service. 
 
-<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/1c7b8987-c042-4235-82e9-2b443a915f26">
-
+<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/88e464c4-cc8c-4d08-af7f-389b33cb2660">
 
 
 ## Modifying the LLM prompt
