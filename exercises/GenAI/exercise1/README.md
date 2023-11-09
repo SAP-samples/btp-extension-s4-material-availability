@@ -7,9 +7,15 @@ For creating a simple and easy-to-build user interface for communicating with th
 On the sign in screen, click on **Register**, unless you already have a Community Edition login. In the next screen, provide your first and last name, your email address for account verification, and United States as the Country/Region. Once your account is verified with the email you'll receive, log in using your newly set credentials. 
 
 ## Import provided project from file
-Once in, click on **Create New**, **New from File**, and provide a name for your application, for example ASUG Tech Connect, and use the FILE to import the [prepared project](../../../Tech%20Connect%20V2.zip.gpg) that contains the base logic and screens for the UI.
+Once in, click on **Create New** in the uper right, expand **Import from File** or use the **New from File** functionality. Provide a name for your application, for example **ASUG Tech Connect**, and use the [prepared project](../../../Tech%20Connect%20V2.zip.gpg) that contains the base logic and screens for the UI to create the app. To do so, simply download the raw file from the prepared project link and store it locally on your laptop. Then, use **Select File** in the tool to specify the downloads location on your machine.
 
-On the **Home page**, select the **Submit** button in the UI Canvas design time and click on **Add Logic to BUTTON 1** in the bottom to show the logic in the **LOGIC CANVAS** in the lower portion of the screen. Select **Create record** in the logic flow for the Submit button and inspect the properties and outputs in the upper right. Click on **Custom object** under Record properties for the resource **chatCompletion** to investigate how the chat with the GPT model is put together. The so-called temperature for the AI model that controls the accuracy/creativity is set to 0.5 per default and by clicking on **Custom list**, you can see both the context we provide to the system for creating the prompt and the user chat text coming from the application.
+<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/73aa9f84-6cb1-4b6b-9fe0-362428c74374">
+
+
+On the **Home page**, mark the **Submit** button in the UI Canvas design time and then click on **Add Logic to BUTTON 1** in the bottom right to show the logic in the **LOGIC CANVAS** in the lower portion of the screen. Select **Create record** in the logic flow for the Submit button and inspect the properties and outputs in the upper right. Click on **Custom object** under Record properties for the resource **chatCompletion** to investigate how the chat with the GPT model is put together. The so-called temperature for the AI model that controls the accuracy/creativity is set to 0.5 per default and by clicking on **Custom list**, you can see both the context we provide to the system for creating the prompt and the user chat text coming from the application.
+
+<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/76303da3-cce6-4b5e-9ea5-e2ccc0aaaa12">
+
 
 Let's have a closer look at the role "system" to see what context the pre-built app is providing:
 - You are an assistant that creates OData V4 queries and parameters from plain English.
@@ -27,27 +33,39 @@ Let's have a closer look at the role "system" to see what context the pre-built 
   - /material-availability/calcMaterialAvailability(material='TG11',plant='1010')
   - /material-availability/calcMaterialAvailabilityAt(material='TG11',plant='1010',timestamp=2023-07-04T07:00:00Z)>"
 
+<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/21663ff8-2af6-4c14-ab30-477d2cb3b02e">
+
+
 As you can see, we're exactly providing the examples that were listed in [Step 8 of the first exercise](https://github.com/SAP-samples/btp-extension-s4-material-availability/blob/main/tutorials/3-basic/1-create-service/README.md#test-the-service-from-sap-business-application-studio), without providing more documentation. In a real scenario, you would embed the entire API specification and as many specific examples as possible to provide an even better learning and baseline for the LLM.
 
 ## Launch your SAP Build Apps app
-Let's see how far we can get with these examples and the power of the GPT model. Now it's on you to try it out. Close the popup, don't save any changes if you didn't intend to change anything, and click on **LAUNCH** in the top bar to test your application. Select **Open preview portal**, then **Open web preview**, and select your SAP Build Apps app. This is how easy you can put together applications with SAP Build Apps!
+Let's see how far we can get with these examples and the power of the GPT model. Now it's on you to try it out. Close the popup, don't save any changes if you didn't intend to change anything, and click on **LAUNCH** in the top bar to test your application. Select **Open preview portal**, then **Open web preview**, and click on **OPEN** for your SAP Build Apps app. This is how easy you can put together applications with SAP Build Apps!
 
 Run some sample queries to try out the logic. Remember, whatever you put into the text field is being sent to the GPT model with the instructions above and should return an OData query. We have implemented error branches that return a message in case the prompt does not fit the intended function. You can investigate this and the entire flow in the design time later. Now, click on **Assistant's Instructions** to see what this tool can and can't do.
 
-Let's give it a try with the below sample queries in natural language and don't use the checkbox for adding the data to the next prompt quite yet, as that will send you to Exercise 2. Let's first understand what is happening here. Every natural language prompt you submit will be translated into an OData query if it can and fits the narrative, otherwise you'll see an error message. When clicking on the OData URL link, it will run the query against the backend SAP S/4HANA system and provide the JSON response, which can be empty if you've generated a query that returns no data or it can contain materials, sales orders, or availability information, according to the query.
+<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/db991d63-387c-41a1-8b23-bb9e28ee74ce">
+
+
+Now, let's give it a try with some sample prompts in natural language. Click on **Assistant's Instructions** again to hide the details again and focus on the prompt text field and the **Submit** button. When you enter a prompt, you can start calling the LLM by clicking **Submit**, hitting just enter/return does not work to start the call to GPT. We have listed some simple prompts below to get started and to understand how it works. Don't use the checkbox for adding the data to the next prompt quite yet, as that will send you to Exercise 2. Let's first understand what is happening here. Every natural language prompt you submit will be translated into an OData query if it can and fits the narrative, otherwise you'll see an error message. When clicking on the returned OData URL link as a second step, it will run the query against the backend SAP S/4HANA system and provide the JSON response from an API similar to the one we created in CAP earlier. The JSON can be empty if you've generated a query that returns no data or it doesn't contain materials, sales orders, or availability information, according to the query.
 
 Try it out and start with simple queries like the ones below, read the created OData query to get a better understanding of what was created and click on it to show the JSON response:
-- What is the availability of material FG126?
+- List 50 materials from my system
+- List 70 sales orders from my system 
+- Show me information about material FG126
 - How much of the FG materials are available?
-- How much of the TG materials are available in plant 1010?
+- How much of the materials in the TG family are available in plant 1010?
 - List all sales orders with material TG11
 
 The JSON returned shows the actual data of a connected SAP S/4HANA system. 
 
-## Modifying the LLM prompt
-Before we continue going to Exercise 2 for further analysis of the material data, let's play around a little bit more and try various prompts to see how the system reacts. One important thing to note as we did not provide more documentation of the used APIs, is certainly its limitations and how to overcome when those details are not embedded with the model. 
+<img width="1129" alt="image" src="https://github.com/SAP-samples/btp-extension-s4-material-availability/assets/91624001/1c7b8987-c042-4235-82e9-2b443a915f26">
 
-For example, why does the following prompt lead to an empty set of material?
+
+
+## Modifying the LLM prompt
+Before we continue going to Exercise 2for further analysis of the material data, let's play around a little bit more and try various prompts to see how the system reacts. One important thing to note as we did not provide more documentation of the used APIs, is certainly its limitations and how to overcome when those details are not embedded with the model. 
+
+For example, why does the following prompt lead to an error message or empty set of material?
 - What is the availability of all of the materials with type FERT?
 
 FERT material is a type of material that represent finished products. In the SAP backend system it is called material type. In the API however, the same attribute is called product type. You can verify this in the API description within the [SAP Business Accelerator Hub](https://api.sap.com/api/API_PRODUCT_SRV).
@@ -55,4 +73,4 @@ FERT material is a type of material that represent finished products. In the SAP
 To fix this for our prompt, let's add an additional explanation to the system part of the engineered prompt of **chatCompletion** by adding a sentence like **Replace 'Type' or 'MaterialType' with 'ProductType'** in the OData query.
 On the **Home page**, select the **Submit** button in the UI Canvas design time to show its logic in the **LOGIC CANVAS** in the lower portion of the screen (click on **Add logic** on the bottom if you don't see it). select **Create record** in the logic flow for the Submit button and click on **Custom object** under Record properties for the resource **chatCompletion** and click on **Custom list** and modify the **content** for role system. Make sure to save everything in the popups and then also in the app builder at the end.
 
-Try it out by refreshing the preview app again and get creative with some of your own prompts. Have some fun and get ready for further analysis of the data. Let's then get ready for Exercise 2.
+Try it out by refreshing the preview app again and get creative with some of your own prompts. Have some fun and get ready for further analysis of the data. Once done and happy, move on to [Exercise 2](../exercise2/README.md).
