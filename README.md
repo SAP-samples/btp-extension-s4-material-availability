@@ -22,7 +22,7 @@ For creating a simple user interface and the process logic for our Material Avai
 - PRE-WORK (ideally already done): [Create and setup your SAP BTP Trial account and adding Business Application Studio](https://developers.sap.com/tutorials/appstudio-onboarding.html)
 - PREP (build your backend service): [Create Material Availability CAP service](https://github.com/SAP-samples/btp-extension-s4-material-availability/blob/main/tutorials/3-basic/1-create-service/README.md)
 - EXERCISE 1 (import the pre-built project): [Import OData Query Builder](./exercises/GenAI/exercise1/README.md)
-- EXERCISE 2: (summarize results and find issues): [Lead to Cash Troubleshooter](./exercises/GenAI/exercise2/README.md)
+- EXERCISE 2: (summarize results and find issues, build a combined UX): [Lead to Cash Troubleshooter](./exercises/GenAI/exercise2/README.md)
 - OPTIONAL: [Create a Material Dashboard UI Application for a classic view of the data](https://github.com/SAP-samples/btp-extension-s4-material-availability/blob/main/tutorials/3-basic/2-create-ui-application/README.md)
 
 ## License
