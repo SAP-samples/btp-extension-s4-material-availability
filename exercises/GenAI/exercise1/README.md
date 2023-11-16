@@ -1,6 +1,9 @@
 # Import OData Query Builder
 In this exercise, you will create a free SAP Build Apps account in the **AppGyver Community Edition**, import a project from file, and start calling the created CAP service by leveraging a GPT-generated OData call.
 
+> [!IMPORTANT]
+> Please note that the required backend systems, including SAP BTP Integration Suite and SAP S/4HANA have been retired after the event. That means, the given API key which is used in the SAP Build Apps (AppGyver) project is no longer valid. Therefore, this part of the overall hands-on experience can only be executed partially. You can import the prepared project and look at the engineered prompt, but the created app will not be functioning outside of the event setup.
+
 ## Create AppGyver Community Edition account
 For creating a simple and easy-to-build user interface for communicating with the GPT model, we're using **SAP Build Apps**, SAP's low-code/no-code tool that was formerly called AppGyver. For the purpose of this hands-on exercise, we're using the SAP Build Apps Community Edition and you'll create your free account right now by clicking on [SAP Build Apps Community Edition](https://agcommunity.design-time.eu10.apps.build.cloud.sap).
 
