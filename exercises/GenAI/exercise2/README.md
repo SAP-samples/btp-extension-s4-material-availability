@@ -1,5 +1,8 @@
 # Lead to Cash Troubleshooter
 
+> [!IMPORTANT]
+> Please note that the required backend systems, including SAP BTP Integration Suite and SAP S/4HANA have been retired after the event. That means, the given API key which is used in the provided project is no longer valid. Thus, this part of the overall hands-on experience cannot be executed outside of the event.
+
 ## Exercise 2 - Guided natural language queries
 Now it's getting interesting ... We'll see how Generative AI can provide insight into business data and provide insights about business challenges. In this exercise, you will prompt the app with natural language questions about the data you have retrieved from SAP S/4HANA. Think about missing or incomplete data, anomalies in either the material or sales order data. You will experience the power of the LLM as it summarizes the data for business users in an easy to understand way and points out things to look out for.
 
