@@ -4,6 +4,9 @@
 
 Welcome to ASUG Tech Connect 2023 in New Orleans! We're very happy to see your interest in our hands-on session and your desire to learn more about how to connect Large Language Models (LLM) like OpenAI's GPT model to your SAP system.
 
+> [!IMPORTANT]
+> Please note that the required backend systems, including SAP BTP Integration Suite and SAP S/4HANA, have been retired after the event and this exercise works only partially outside of the event setup.
+
 ## Exercise Purpose
 This tutorial is the exercise desciption for the ASUG Tech Connect Hands-on Lab session "ChatGPT and SAP: Leveraging SAP BTP and Microsoft Azure AI" and is intended to be used in class with instructors on-site, in case of questions. Please follow all the steps and read the instructions carefully. In case of questions or when you get stuck, try to discuss and troubleshoot with your fellow learners and raise your hand in case you want support from one of the instructors.
 
