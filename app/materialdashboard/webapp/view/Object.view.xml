@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="material.dashboard.controller.Object"
+    controllerName="materialdashboard.controller.Object"
     xmlns="sap.uxap"
     xmlns:m="sap.m"
     xmlns:layout="sap.ui.layout"

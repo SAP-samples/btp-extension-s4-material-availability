@@ -1,2 +1,2 @@
 
-using from './material.dashboard/annotations';
+using from './materialdashboard/annotations';
