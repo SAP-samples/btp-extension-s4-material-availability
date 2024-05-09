@@ -5,7 +5,7 @@ In this section, you will create a CAP project in SAP Business Application Studi
 1. Access SAP Business Application Studio from the SAP BTP cockpit under **Subscriptions and Instances** and create a new **Full Stack Cloud Application** dev space (or run an existing dev space of this type).
 2. Once dev space is running, access it by clicking on its name.
 3. From the dev space **Get Started** page, select the **Start from template** option and start creating a new CAP project.
-4. Enter your CAP project name, for example: Material Availability, and keep the default Node.js runtime. Then click **Finish** to generate the project content in your workspace.
+4. Enter your CAP project name, for example: MaterialAvailability, and keep the default Node.js runtime. Then click **Finish** to generate the project content in your workspace.
 
 ## Import external SAP S/4HANA Service Data Models
 In this step, you will consume the following SAP S/4HANA services to retrieve and calculate relevant information for the Material Dashboard application:
@@ -14,17 +14,19 @@ In this step, you will consume the following SAP S/4HANA services to retrieve an
 - Basic Product Availability Info Service: https://api.sap.com/api/API_PRODUCT_AVAILY_INFO_BASIC
 
 Before you can start consuming these external services from the Material Availability CAP Service, you must import the external service data models to your CAP project. 
-This can be done easily from SAP Business Application Studio using the [Service Center](https://help.sap.com/docs/bas/sap-business-application-studio/explore-services-using-service-center):
-1. Open the Service Center and expand the **SAP BUSINESS ACCELERATOR HUB** section.
-2. Expand the **SAP S/4HANA Cloud** product and select the SAP S/4HANA Cloud package.
-3. Select search on the **SAP S/4HANA Cloud** package and search for **Sales Orders (A2X)** service.
-4. Login with your SAP Business Accelerator Hub credentials, once prompted.
-5. An editor tab with the service information is opened. You can view the service properties, including the service entities and live data fetched from the SAP Business Accelerator Hub's sandbox environment.
-6. From the service tab, click on **Service Actions** and select **Add External Data Model to CAP project**. Select your CAP project from workspace and click **Add** to complete the operation.   
+This can be done easily from SAP Business Application Studio using the [Storyboard](https://help.sap.com/docs/bas/developing-cap-application-in-sap-business-application-studio/storyboard-and-project-explorer) and [Service Center](https://help.sap.com/docs/bas/sap-business-application-studio/explore-services-using-service-center):
+1. Trigger the [Command Palette](https://help.sap.com/docs/bas/sap-business-application-studio/command-palette) by pressing F1 key and select the **Open Storyboard** command. The Storyboard editor serves as an entry point for viewing and adding components to your CAP project.
+2. From Storyboard, select the "+" button under the **External Resources** column to add a new external service resource to your CAP project.
+3. From the opened Service Center editor tab, select the **SAP BUSINESS ACCELERATOR HUB** provider, and keep the default **SAP S/4HANA Cloud Public Edition** product.
+4. Click on the **SAP S/4HANA Cloud Public Edition** package to display its services.
+5. Search for the **Sales Order (A2X)** service and select the first entry returned.
+6. Login with your SAP Business Accelerator Hub credentials, once prompted.
+7. The service information is displayed. You can view the service properties, including the service entities and live data fetched from the SAP Business Accelerator Hub's sandbox environment.
+8. Click on **Add to Project** to add this service as external resource to your CAP project.   
 
 ![Service Center](images/service-center.png)
 
-7. Repeat steps 3-6 for services **Product Master (A2X)** and **Basic Product Availability Info**. 
+7. Repeat steps 2-8 for services **Product Master (A2X)** and **Basic Product Availability Info**. 
 8. Open the **Explorer** to review the created resources in your project. For each service, a CDS model file is created under **srv/external** folder. In addition, the root **package.json** file is updated with required services information.
 
 ## Configure the service entrypoint from sandbox environment
@@ -41,11 +43,10 @@ In the **Basic Scope** of the mission, you will use a sandbox environment to con
 
 ## Implement the service
 1. Open Terminal and run command `npm install @sap-cloud-sdk/http-client @sap-cloud-sdk/util` from your project root, to add dependencies required for consuming data from external services.
-2. Trigger the [Command Palette](https://help.sap.com/docs/bas/sap-business-application-studio/command-palette) by pressing F1 key and select the **Open Storyboard** command. The Storyboard editor serves as an entry point for viewing and adding components to your CAP project.
-3. From Storyboard, select the "+" button under the **Services** column to add a new service resource to your CAP project.
-4. Open the created **srv/service.cds** file from your project, and copy the content from the service model [here](../../../srv/service.cds). This service definition imports the external service models added in the previous step. Then it defines the Material Availability service model as a mashup service from the 3 external SAP S/4HANA services. It exposes only the required entities as projections from the external service entities, including only the relevant properties. The MaterialPlant entity definition includes calculated availability fields that will be populated at runtime, in addition to the properties from the imported A_ProductPlant entity. In this way, the MaterialPlant entity will mashup data retreived at runtime from 2 different SAP S/4HANA services.
-5. Copy [service.js](../../../srv/service.js) file including the service handlers implementation logic, into the **srv** folder in your project. The implementation in this file handles READ requests for all service entities defined in the model, also to support navigation between entities and other OData features such as the "expand" capability. The handlers for the MaterialPlant entity and for the Material entity (which may expand the MaterialPlant data using a navigation property) include special handling to fetch the required properties from the Product Master SAP S/4HANA service entities, and calculating availability properties by calling a function from the Basic Product Availability Info SAP S/4HANA service.
-6. Go back to the Storyboard to view the created components in your project, and the connections between them. You can also open each service in the Graphical Modeler directly from the Storyboard to view the complete service structure, including the entity properties and the navigation relationships between the service entities.
+2. From Storyboard, select the "+" button under the **Services** column to add a new service resource to your CAP project.
+3. Open the created **srv/service.cds** file from your project, and copy the content from the service model [here](../../../srv/service.cds). This service definition imports the external service models added in the previous step. Then it defines the Material Availability service model as a mashup service from the 3 external SAP S/4HANA services. It exposes only the required entities as projections from the external service entities, including only the relevant properties. The MaterialPlant entity definition includes calculated availability fields that will be populated at runtime, in addition to the properties from the imported A_ProductPlant entity. In this way, the MaterialPlant entity will mashup data retreived at runtime from 2 different SAP S/4HANA services.
+4. Copy [service.js](../../../srv/service.js) file including the service handlers implementation logic, into the **srv** folder in your project. The implementation in this file handles READ requests for all service entities defined in the model, also to support navigation between entities and other OData features such as the "expand" capability. The handlers for the MaterialPlant entity and for the Material entity (which may expand the MaterialPlant data using a navigation property) include special handling to fetch the required properties from the Product Master SAP S/4HANA service entities, and calculating availability properties by calling a function from the Basic Product Availability Info SAP S/4HANA service.
+5. Go back to the Storyboard to view the created components in your project, and the connections between them. You can also open each service in the Graphical Modeler directly from the Storyboard (right click the service tile and select the option from the context menu) to view the complete service structure, including the entity properties and the navigation relationships between the service entities.
 
 ![Storyboard](images/storyboard.png)
 
