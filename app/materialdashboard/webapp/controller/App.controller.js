@@ -5,7 +5,7 @@ sap.ui.define(
     function(BaseController) {
       "use strict";
   
-      return BaseController.extend("material.dashboard.controller.App", {
+      return BaseController.extend("materialdashboard.controller.App", {
         onInit() {
         }
       });

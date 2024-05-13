@@ -8,7 +8,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, History, formatter, Filter, FilterOperator) {
     "use strict";
 
-    return BaseController.extend("material.dashboard.controller.Object", {
+    return BaseController.extend("materialdashboard.controller.Object", {
 
         formatter: formatter,
 

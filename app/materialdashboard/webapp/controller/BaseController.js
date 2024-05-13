@@ -8,7 +8,7 @@ sap.ui.define([
     // shortcut for sap.m.URLHelper
     var URLHelper = mobileLibrary.URLHelper;
 
-    return Controller.extend("material.dashboard.controller.BaseController", {
+    return Controller.extend("materialdashboard.controller.BaseController", {
         /**
          * Convenience method for accessing the router.
          * @public

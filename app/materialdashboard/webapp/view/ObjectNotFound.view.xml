@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="material.dashboard.controller.NotFound"
+    controllerName="materialdashboard.controller.NotFound"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
 
