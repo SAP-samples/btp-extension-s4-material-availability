@@ -2,12 +2,13 @@
 In this section, you will use SAP Business Application Studio and SAP Fiori tools to implement a Material Dashboard UI Application in your CAP project, for consuming the Material Availability service data.
 
 ## Generate a Fiori UI Application from Template
-1. From SAP Business Application Studio main menu, select the **File** -> **New Project from Template** option.
-2. Select the **SAP Fiori Application** option and in the next step choose the **Basic** template, to create a Fiori freestyle application.
-3. In the next step of **Data Source and Service Selection**, select the **Use a Local CAP project** as Data Source and choose your CAP project created from the previous section. Then select the **MaterialAvailability (Node.js)** option as the OData service to consume from the UI application and move to the next step.
-4. In the **Entity Selection** step, enter **Worklist** as the view name.
-5. In the final step of **Project Attributes**, type **materialdashboard** as the module name and type a description for your application, e.g. Material Dashboard UI. Keep the rest of the project attributes with their default values.
-6. Click **Finish** to generate the application module under the **app** folder of your CAP project.
+1. From SAP Business Application Studio, trigger the [Command Palette](https://help.sap.com/docs/bas/sap-business-application-studio/command-palette) by pressing F1 key and select the **Open Storyboard** command.
+2. From Storyboard, select the "+" button under the **UI Applications** column to add a new UI application to your CAP project.
+3. From the opened Template Wizard, select the **Basic** template, to create a Fiori freestyle application.
+4. In the next step of **Data Source and Service Selection**, keep the **Use a Local CAP project** as Data Source and choose your CAP project created from the previous section. Then select the **MaterialAvailability (Node.js)** option as the OData service to consume from the UI application, and move to the next step.
+5. In the **Entity Selection** step, enter **Worklist** as the view name.
+6. In the final step of **Project Attributes**, type **materialdashboard** as the module name and type a description for your application, e.g. Material Dashboard UI. Keep the rest of the project attributes with their default values.
+7. Click **Finish** to generate the application module under the **app** folder of your CAP project.
 
 ## Implement the Fiori UI Application
 In this step you will enhance the generated application source code, to implement a Material Dashboard UI application consuming data from the Material Availability OData service.
