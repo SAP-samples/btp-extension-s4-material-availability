@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-material.dashboard": "cds watch --open material.dashboard/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-materialdashboard": "cds watch --open materialdashboard/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
@@ -69,6 +69,6 @@
     }
   },
   "sapux": [
-    "material.dashboard"
+    "materialdashboard"
   ]
 }

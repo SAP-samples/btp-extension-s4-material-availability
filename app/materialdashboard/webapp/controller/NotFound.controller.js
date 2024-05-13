@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
     "use strict";
 
-    return BaseController.extend("material.dashboard.controller.NotFound", {
+    return BaseController.extend("materialdashboard.controller.NotFound", {
 
         /**
          * Navigates to the worklist when the link is pressed

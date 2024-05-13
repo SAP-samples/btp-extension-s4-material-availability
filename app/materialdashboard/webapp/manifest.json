@@ -1,7 +1,7 @@
 {
   "_version": "1.49.0",
   "sap.app": {
-    "id": "material.dashboard",
+    "id": "materialdashboard",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -66,7 +66,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "material.dashboard.i18n.i18n"
+          "bundleName": "materialdashboard.i18n.i18n"
         }
       },
       "": {
@@ -91,7 +91,7 @@
       "config": {
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
-        "viewPath": "material.dashboard.view",
+        "viewPath": "materialdashboard.view",
         "controlId": "app",
         "controlAggregation": "pages",
         "bypassed": {
@@ -141,7 +141,7 @@
       }
     },
     "rootView": {
-      "viewName": "material.dashboard.view.App",
+      "viewName": "materialdashboard.view.App",
       "type": "XML",
       "async": true,
       "id": "App"

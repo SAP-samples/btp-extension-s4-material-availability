@@ -69,22 +69,22 @@ This will expose your service, to provide an additional "Vendor Available to Pro
 
 3. Make sure the `"name"` property in your package.json file includes only alphanumeric characters, "_" or "-". This to ensure the module names and application's xsappname that will be generated out of this name, will be valid in Cloud Foundry. For example, use the name: "material-availability".
 
-4. From the Terminal, execute `cds add approuter --for production` to enhance the application with App Router that will act as a single point-of-entry gateway to route the service requests to. In particular, it ensures user login and authentication in combination with XSUAA when accessing through browser.
+4. From the Terminal, execute `cds add approuter --for production` to enhance the application with App Router that will act as a single point-of-entry gateway to route the service requests to. In particular, it ensures user login and authentication in combination with XSUAA when accessing through browser (for testing purposes). Skip this step in case you intend to deploy also the Fiori UI application since in this case you can use the UI application to login.
 
-4. Execute `npm update --package-lock-only` to freeze all dependencies, including transient ones. This is best practice for deployed applications.
+5. Execute `npm update --package-lock-only` to freeze all dependencies, including transient ones. This is best practice for deployed applications.
 
-5. Execute `cds add mta` to generate an mta.yaml descriptor file, configuring all the modules and services required for [MTA-based deployment](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/d04fc0e2ad894545aebfd7126384307c.html) of your CAP project.
+6. Execute `cds add mta` to generate an mta.yaml descriptor file, configuring all the modules and services required for [MTA-based deployment](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/d04fc0e2ad894545aebfd7126384307c.html) of your CAP project.
 
-6. Right-click the generated **mta.yaml** file, select **Open With...** and then select the **Text Editor** option. After the `resources` section in the file, add the following resources to add the destination and connectivity SAP BTP service instances and make them accessible from the deployed application: 
+7. Right-click the generated **mta.yaml** file, select **Open With...** and then select the **Text Editor** option. After the `resources` section in the file, add the following resources to add the destination and connectivity SAP BTP service instances and make them accessible from the deployed application: 
    ```
    resources:
-     - name: material-availability-destination
+     - name: material-availability-destination-service
        type: org.cloudfoundry.managed-service
        parameters:
          service: destination
          service-plan: lite
          
-     - name: material-availability-connectivity
+     - name: material-availability-connectivity-service
        type: org.cloudfoundry.managed-service
        parameters:
          service: connectivity
@@ -97,17 +97,19 @@ This will expose your service, to provide an additional "Vendor Available to Pro
      . . .
        requires:
          - name: material-availability-auth
-         - name: material-availability-destination
-         - name: material-availability-connectivity
+         - name: material-availability-destination-service
+         - name: material-availability-connectivity-service
    ```
    Pay attention to indentation when editing the mta.yaml file.
+
+   Skip the definition of the material-availability-destination-service resource in case you intend to deploy also the Fiori UI application, since it will be created for you when following the steps for deploying the Fiori UI application. Make sure to still define it as a required service from the material-availability-srv module.
 
 
 
 For more information on preparing CAP project for production, see [here](https://cap.cloud.sap/docs/guides/deployment/to-cf#prepare-for-production).
 
 Note: In this section, you will deploy only the service module in order to expose it as a Vendor API. 
-To deploy also the Material Dashboard Fiori application and setup its access to the service endpoint, see the [end-to-end tutorial](https://developers.sap.com/tutorials/btp-app-work-zone-setup.html) for the necessary configurations in the mta.yaml file and on the Material Dashboard Fiori application.
+To deploy also the Material Dashboard Fiori application and setup its access to the service endpoint, see the [end-to-end tutorial](https://developers.sap.com/tutorials/deploy-to-cf.html) for the necessary configurations in the mta.yaml file and on the Material Dashboard Fiori application. Use the "materialdashboard" name when following this tutorial, for the business solution name of the Approuter Configuration module and for the semantic object of the Fiori Launchapad Configuration.
 
 
 ## Deploy to Cloud Foundry:
@@ -118,7 +120,7 @@ To deploy also the Material Dashboard Fiori application and setup its access to 
 5. Go to SAP BTP cockpit and access the Cloud Foundry space to which you deployed the application modules. From the **Applications** tab click on the App Router application name, for example: material-availability, and click on the link under the **Application Routes**.
 6. Login with the same user you logged-in to the SAP BTP Cockpit.
 7. Test the deployed service by adding the paths as you did in the previous section, in step 8 of [testing with the "live" profile](../../3-basic/1-create-service#test-the-service-from-sap-business-application-studio) from SAP Business Application Studio.
-   Note: the access through the App router application module is required only when accessing through browser, to allow UI-based login. When accessing the service from any other application or service, the entrypoint of the deployed service application (for example, material-availability-srv) should be used directly, with JWT token credentials, initiated by SAP BTP XSUAA service.
+   Note: the access through the App Router application module is required only when accessing through browser, to allow UI-based login. In case the Fiori UI application was also deployed, access it to test also your service logic, since the App Router application module is not created in this case. When accessing the service from any other application or service, the entrypoint of the deployed service application (for example, material-availability-srv) should be used directly, with JWT token credentials, initiated by SAP BTP XSUAA service.
 
 Congratulations! You have completed the **Advanced** scope and have your Material Availability Dashboard application ready, including UI, service logic and access to live SAP S/4HANA system. You also have the service available from Cloud Foundry as a downstream Vendor API. 
 
