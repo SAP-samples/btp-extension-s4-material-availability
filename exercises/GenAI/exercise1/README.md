@@ -1,3 +1,25 @@
+---
+id: id-ra0000-0
+title: Lorem ipsum dolor sit amet [Test0]
+title_meta: This does not work !!!
+description: Lorem ipsum dolor sit amet
+keywords: [sap, genai, cloud]
+sidebar_label: Lorem ipsum dolor sit amet [Test0]
+sidebar_position: 0
+slug: /ref-arch/test
+image: img/logo.svg
+tags: [genai, azure, aws, gcp]
+hide_table_of_contents: true
+hide_title: false
+toc_min_heading_level: 2
+toc_max_heading_level: 4
+draft: false
+unlisted: true
+last_update:
+  date: 2024-12-13
+  author: jmsrpp
+---
+
 # Import OData Query Builder
 In this exercise, you will create a free SAP Build Apps account in the **AppGyver Community Edition**, import a project from file, and start calling the created CAP service by leveraging a GPT-generated OData call.
 
