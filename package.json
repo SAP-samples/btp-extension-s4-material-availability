@@ -8,7 +8,7 @@
   "dependencies": {
     "@sap-cloud-sdk/http-client": "^4.0.1",
     "@sap-cloud-sdk/util": "^4.0.1",
-    "@sap/cds": "^8",
+    "@sap/cds": "^9",
     "express": "^4"
   },
   "devDependencies": {
