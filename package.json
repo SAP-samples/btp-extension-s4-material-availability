@@ -9,7 +9,7 @@
     "@sap-cloud-sdk/http-client": "^4.0.1",
     "@sap-cloud-sdk/util": "^4.0.1",
     "@sap/cds": "^8",
-    "express": "^4"
+    "express": "^5"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
